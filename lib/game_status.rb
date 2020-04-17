@@ -58,13 +58,17 @@ def over?(board)
 end
 
 def winner(board)
-  winning_move = won?(board)
-  "#{winning_move}".to_i
-  if won?(board) == false
+  if !(over?(board))
     return nil
-  elsif board[winning_move] == "X"
-    return "X"
-  elsif board[winning_move] == "O"
-    return "O"
+  elsif draw?(board)
+    return nil
+  elsif won?(board)
+    winning_move = won?(board)
+    win_ident = winning_move[1]
+    if board[win_ident] == "X"
+      return "X"
+    elsif board[win_ident] == "O"
+      return "O"
+    end
   end
 end
